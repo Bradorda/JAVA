@@ -1,0 +1,27 @@
+Forneça as classes em Java para um programa funcional para a seguinte situação:
+Uma biblioteca possui um nome, um endereço e armazena um conjunto de publicações.
+Atualmente, as publicações disponíveis são os artigos, livros e teses. Todas as publicações
+possuem data de publicação, um título, uma lista de outras publicações a que elas fazem referência
+e o conjunto de autores da publicação. São atributos relevantes para um autor o seu nome e sua
+titulação. São atributos relevantes para artigos o seu título, a sua data de publicação, os seus
+autores, as outras publicações que ele faz referência e o seu resumo. Para os livros é relevante
+armazenar seu título, sua data de publicação, as outras publicações que ele referência, seus
+autores, o número da edição, o nome da editora e o seu ISBN. Para as teses é relevante armazenar
+seu título, sua data de publicação, as outras publicações que ela faz referência, o autor da tese, o
+número de páginas, resumo, data da defesa e a instituição na qual a tese foi defendida.
+As publicações são forma genéricas de se referir a uma grande categoria de classes, mas na
+biblioteca não existem objetos publicações; o que ela vai efetivamente armazenar são livros ou
+artigos. Futuramente a biblioteca pretende operar com outros tipos de publicações como manuais,
+monografias e etc.
+As publicações podem ser emprestadas para usuários, porém um usuário comum poderá pegar
+somente um empréstimo por vez. Existem também os usuários especiais, que não terão limite de
+empréstimos por vez, porém para cada publicação que o usuário queria pegar de empréstimo é
+gerado um empréstimo independente. Em todos os casos, uma publicação só pode estar
+emprestada para um usuário por vez. São informações relevantes do usuário: Nome, telefone, email e CPF.
+O usuário pode renovar um empréstimo quantas vezes ele quiser. A cada renovação deve ser
+atualizada a data de entrega do empréstimo, deve ser definida para 7 dias após data de empréstimo
+e/ou renovação. No entanto, após 3 renovações os usuários não poderão renovar mais os
+empréstimos. O valor da multa irá depender da publicação que usuário pegou de empréstimo.
+Logo, cada publicação deve ter seu valor de multa. Em sua devolução deve ser calculado a multa
+referente à quantidade de dias que o usuário ficou inadimplente após a data da última renovação
+vezes o valor da multa da publicação. 
