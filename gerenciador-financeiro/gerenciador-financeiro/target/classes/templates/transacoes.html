@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gerenciar Transações</title>
+</head>
+<body>
+    <h1>Transações</h1>
+    <a href="/transacoes/adicionar">Adicionar Transação</a>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Descrição</th>
+                <th>Valor</th>
+                <th>Data</th>
+                <th>Tipo</th>
+                <th>Categoria</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="transacao : ${transacoes}">
+                <td th:text="${transacao.id}">ID</td>
+                <td th:text="${transacao.descricao}">Descrição</td>
+                <td th:text="${transacao.valor}">Valor</td>
+                <td th:text="${transacao.data}">Data</td>
+                <td th:text="${transacao.tipo}">Tipo</td>
+                <td th:text="${transacao.categoria.nome}">Categoria</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
