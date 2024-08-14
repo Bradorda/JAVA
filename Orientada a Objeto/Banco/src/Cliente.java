@@ -3,6 +3,7 @@ public abstract class Cliente {
     private String telefone;
     private String email;
     private String Teste//testando comandos do git, adionando 1 variavel.
+    private String test2//uma outra linha
 
     public Cliente(String nome, String telefone, String email) {
         this.nome = nome;
