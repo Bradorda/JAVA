@@ -9,3 +9,9 @@
 </ul>
 
 <h2>Single Responsibility Principe</h2>
+```java
+public class Exemplo {
+    public static void main(String[] args) {
+        System.out.println("Olá, mundo!"); // Imprime uma mensagem no console
+    }
+}
