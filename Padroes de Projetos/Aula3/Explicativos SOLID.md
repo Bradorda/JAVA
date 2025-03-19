@@ -3,13 +3,13 @@
 <p>Bom dia, professor! Tudo bem com você? Eu espero que sim.</p>
 <p>Através deste arquivo, irei explicar como foram implementados os princípios SOLID em cada classe, mostrando a maneira incorreta e a correta para cada princípio.</p>
 
-<ul> Lista dos Princípios:</ul>
+<ul> Lista dos Princípios:
 <li><b>S</b>ingle Responsibility Principle (SRP) - Princípio da Responsabilidade Única</li>
 <li><b>O</b>pen/Closed Principle (OCP) - Princípio do Aberto/Fechado</li>
 <li><b>L</b>iskov Substitution Principle (LSP) - Princípio da Substituição de Liskov</li>
 <li><b>I</b>nterface Segregation Principle (ISP) - Princípio da Segregação de Interface</li> 
 <li><b>D</b>ependency Inversion Principle (DIP) - Princípio da Inversão de Dependência</li>
-
+</ul>
 ---
 
 <h2>1. Single Responsibility Principle (SRP)</h2> 
