@@ -16,15 +16,63 @@ Através deste arquivo, irei explicar como foram implementados os princípios SO
 O princípio da responsabilidade única afirma que uma classe deve ter apenas um motivo para mudar.  
 
 ### ❌ Exemplo Incorreto:
-A classe abaixo **viola o SRP** porque mistura **lógica de cálculo e exibição** no console.
+A classe abaixo **viola o SRP** porque mistura **lógica geração de relatorios com a exportação para PDF**.
 
 ```java
-public class Calculadora {
-    public int somar(int a, int b) {
-        return a + b;
+public class RelatorioVendas_SRP {
+
+    private List<String> dadosVendas;
+
+    public RelatorioVendas_SRP(List<String> dadosVendas) {
+        this.dadosVendas = dadosVendas;
     }
 
-    public void imprimirResultado(int resultado) {
-        System.out.println("Resultado: " + resultado);
+    public void gerarRelatorio() {
+        System.out.println("Gerando relatorio de vendas...");
+        for (String venda : dadosVendas) {
+            System.out.println(venda);
+        }
+    }
+
+    //violação do principio de responsabilidade unica.
+    public void exportarParaPDF() {
+        System.out.println("Exportando relatorio para PDF...");
+        for (String venda : this.dadosVendas) {
+            System.out.println("PDF: " + venda);
+        }
+    }
+
+}
+```
+###  Exemplo Correto:
+```java
+public class RelatorioVendas_SRP {
+
+    private List<String> dadosVendas;
+
+    public RelatorioVendas_SRP(List<String> dadosVendas) {
+        this.dadosVendas = dadosVendas;
+    }
+
+    public void gerarRelatorio() {
+        System.out.println("Gerando relatório de vendas...");
+        for (String venda : dadosVendas) {
+            System.out.println(venda);
+        }
+    }
+
+    public List<String> getDadosVendas() {
+        return dadosVendas;
+    }
+
+}
+
+public class ExportadorPDF_SRP {
+
+    public void exportar(RelatorioVendas_SRP relatorio) {
+        System.out.println("Exportando relatório para PDF...");
+        for (String venda : relatorio.getDadosVendas()) {
+            System.out.println("PDF: " + venda);
+        }
     }
 }
