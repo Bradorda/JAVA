@@ -236,3 +236,85 @@ public class Quadrado_LSP implements Forma_LSP{
         return lado * lado;
     }
 }
+```
+<h2>Interface Segregation Principle (ISP)</h2>
+<p>Uma classe não deve ser forçada a implementar interfaces e metodos que não serão utilizados</p>
+
+<h3>Exemplo Incorreto</h3>
+<p>A interface Funcionario_ISP possui o metodo de comissão, porém a classe Recepcionista_ISP não deve utilizar esse meotodo</p>
+<p>A Classe Recepcionista_ISP foi forçada a implementar um metodo que não faz sentido para ela.</p>
+
+```java
+public interface Funcionario_ISP {
+
+    public double salario();
+    public double comissao();
+}
+```
+```java
+public class Vendedor_ISP implements Funcionario_ISP{
+
+    @Override
+    public double salario() {
+        return 0;
+    }
+
+    @Override
+    public double comissao() {
+        return 0;
+    }
+}
+```
+```java
+public class Recepcionista_ISP implements Funcionario_ISP {
+
+    @Override
+    public double salario() {
+        return 0;
+    }
+    //Recepcionista não deve receber comissão.
+    @Override
+    public double comissao() {
+        return 0;
+    }
+}
+```
+<h3>Exemplo Correto</h3>
+<p>A Interface Funcionario tem apenas o metodo salario() </p>
+<p>Criamos outra Interface Comissionavel_ISP para calcular a comissão</p>
+<p>A Classe Recepcionista_ISP implementa somente Funcionario_ISP, enquanto Vendedor implementa Funcionario_ISP e Comissionavel_ISP</p>
+
+```java
+public interface Funcionario_ISP {
+
+    public double salario();
+}
+```
+```java
+public interface Comissionavel_ISP {
+
+    public double gerarComissao();
+}
+```
+```java
+public class Recepcionista_ISP implements Funcionario_ISP{
+
+    @Override
+    public double salario() {
+        return 0;
+    }
+}
+```
+```java
+public class Vendedor_ISP implements Funcionario_ISP,Comissionavel_ISP{
+    
+    @Override
+    public double gerarComissao() {
+        return 0;
+    }
+
+    @Override
+    public double salario() {
+        return 0;
+    }
+}
