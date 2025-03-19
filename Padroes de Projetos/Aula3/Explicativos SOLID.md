@@ -45,6 +45,9 @@ public class RelatorioVendas_SRP {
 }
 ```
 ###  Exemplo Correto:
+RelatorioVendas agora só cuida da geração do relatório
+ExportadorPDF agora só cuida da exportação do relatório.
+Se no futuro quisermos exportar para Excel ou Banco de Dados, podemos criar novas classes (ExportadorExcel, ExportadorBanco) sem modificar a classe RelatorioVendas!
 ```java
 public class RelatorioVendas_SRP {
 
@@ -66,7 +69,8 @@ public class RelatorioVendas_SRP {
     }
 
 }
-
+```
+```java
 public class ExportadorPDF_SRP {
 
     public void exportar(RelatorioVendas_SRP relatorio) {
