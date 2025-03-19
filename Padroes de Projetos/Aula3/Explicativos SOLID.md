@@ -45,9 +45,9 @@ public class RelatorioVendas_SRP {
 }
 ```
 ###  Exemplo Correto:
-RelatorioVendas agora só cuida da geração do relatório
-ExportadorPDF agora só cuida da exportação do relatório.
-Se no futuro quisermos exportar para Excel ou Banco de Dados, podemos criar novas classes (ExportadorExcel, ExportadorBanco) sem modificar a classe RelatorioVendas!
+RelatorioVendas agora só cuida da geração do relatório**
+ExportadorPDF agora só cuida da exportação do relatório.**
+Se no futuro quisermos exportar para Excel ou Banco de Dados, podemos criar novas classes (ExportadorExcel, ExportadorBanco) sem modificar a classe RelatorioVendas!**
 ```java
 public class RelatorioVendas_SRP {
 
@@ -80,3 +80,63 @@ public class ExportadorPDF_SRP {
         }
     }
 }
+```
+## **1. Open/Closed Principle (OCP)**  
+//explicação OCP
+### ❌ Exemplo Incorreto:
+A classe CalculadoraDesconto não está aberta para extensão e fechada para modificação.
+Se quisermos adicionar um novo tipo de cliente (ex: "Cliente Premium"), teremos que modificar a classe, violando o OCP.
+
+```java
+public class CalculadoraDesconto_OCP {
+
+    public double calcularDesconto(String tipoCliente, double valorCompra) {
+        if (tipoCliente.equals("Comum")) {
+            return valorCompra * 0.05; // 5% de desconto
+        } else if (tipoCliente.equals("VIP")) {
+            return valorCompra * 0.10; // 10% de desconto
+        } else if (tipoCliente.equals("Funcionário")) {
+            return valorCompra * 0.20; // 20% de desconto
+        }
+        return 0;
+    }
+}
+```
+###  Exemplo Correto:
+O código está aberto para extensão (podemos adicionar novos tipos de desconto sem alterar código existente).
+Fechado para modificação (não precisamos mexer na Main nem na FabricaDesconto para adicionar novos tipos).
+```java
+public interface CalculadoraDesconto_OCP {
+
+    public double calcularDesconto(double valorCompra);
+
+}
+```
+```java
+public class CalcularDescontoClienteComum_OCP implements CalculadoraDesconto_OCP{
+
+    @Override
+    public double calcularDesconto(double valorCompra) {
+        return valorCompra * 0.05;
+    }
+}
+```
+```java
+public class CalculadoraDescontoClienteVip_OCP implements CalculadoraDesconto_OCP {
+
+    @Override
+    public double calcularDesconto(double valorCompra) {
+        return valorCompra * 0.10;
+    }
+}
+```
+```java
+public class CalculadoraDescontoClienteFuncionario_OCP implements CalculadoraDesconto_OCP {
+
+    @Override
+    public double calcularDesconto(double valorCompra) {
+        return valorCompra * 0.20;
+    }
+}
+
+
