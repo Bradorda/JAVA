@@ -105,7 +105,7 @@ public class CalculadoraDesconto_OCP {
 ```
 <h2>Exemplo Correto:</h2>
 <p>O código está aberto para extensão (podemos adicionar novos tipos de desconto sem alterar código existente).</p>
-<p>Fechado para modificação (não precisamos mexer na Main nem na FabricaDesconto para adicionar novos tipos).</p>
+<p>Fechado para modificação, e aberto para adicionar novos tipos).</p>
 
 ```java
 public interface CalculadoraDesconto_OCP {
