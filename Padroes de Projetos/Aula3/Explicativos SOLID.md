@@ -5,6 +5,7 @@
   <li>Open Closed Principe</li>
   <li>Liskov Substituion Principe</li>
   <li>Interface Segregation Principe</li>
-  <li>Dependency Inversion Principe</li>
-  
+  <li>Dependency Inversion Principe</li>  
 </ul>
+
+<h2>Single Responsibility Principe</h2>
