@@ -140,5 +140,99 @@ public class CalculadoraDescontoClienteFuncionario_OCP implements CalculadoraDes
         return valorCompra * 0.20;
     }
 }
+```
+<h3>Liskov Substitution Principle (LSP)</h3>
+<p>Classes-filhas devem ser capazes de substituir suas classes-mães</p>
 
+<h2>Exemplo Incorreto</h2>
+<p>Quadrado herda de Retangulo, mas altera o comportamento dos métodos setLargura e setAltura</p>
+<p>Isso quebra a substituição: um Quadrado deveria poder ser usado onde um Retangulo é esperado sem alterar o comportamento esperado</p>
 
+```java
+public class Retangulo_LSP {
+
+    protected double largura;
+    protected double altura;
+
+    public void setLargura(double largura) {
+        this.largura = largura;
+    }
+
+    public void setAltura(double altura) {
+        this.altura = altura;
+    }
+
+    public double calcularArea() {
+        return largura * altura;
+    }
+}
+```
+```java
+public class Quadrado_LSP extends Retangulo_LSP {
+
+    @Override
+    public void setLargura(double largura) {
+        this.largura = largura;
+        this.altura = largura; // Mantém a propriedade do quadrado (altura = largura)
+    }
+
+    @Override
+    public void setAltura(double altura) {
+        this.largura = altura;
+        this.altura = altura; // Mantém a propriedade do quadrado (altura = largura)
+    }
+}
+```
+<h2>Exemplo Correto</h2>
+<p>Quadrado e Retangulo não estão mais ligados por herança</p>
+<p>Agora ambos implementam Forma, garantindo que cada um tenha seu próprio comportamento correto.</p>
+<p>Quadrado e Retangulo podem ser usados sem que um afete o comportamento do outro</p>
+
+```java
+public interface Forma_LSP {
+
+    double calcularArea();
+}
+```
+```java
+public class Retangulo_LSP implements Forma_LSP {
+    private double largura;
+    private double altura;
+
+    public Retangulo_LSP(double largura, double altura) {
+        this.largura = largura;
+        this.altura = altura;
+    }
+
+    public double getLargura() {
+        return largura;
+    }
+
+    public double getAltura() {
+        return altura;
+    }
+
+    @Override
+    public double calcularArea() {
+        return largura * altura;
+    }
+}
+```
+```java
+public class Quadrado_LSP implements Forma_LSP{
+
+    private double lado;
+
+    public Quadrado_LSP(double lado) {
+        this.lado = lado;
+    }
+
+    public double getLado() {
+        return lado;
+    }
+
+    @Override
+    public double calcularArea() {
+        return lado * lado;
+    }
+}
