@@ -280,7 +280,7 @@ public class Recepcionista_ISP implements Funcionario_ISP {
 }
 ```
 <h3>Exemplo Correto</h3>
-<p>A Interface Funcionario tem apenas o metodo salario() </p>
+<p>A Interface Funcionario_ISP tem apenas o metodo salario() </p>
 <p>Criamos outra Interface Comissionavel_ISP para calcular a comissão</p>
 <p>A Classe Recepcionista_ISP implementa somente Funcionario_ISP, enquanto Vendedor implementa Funcionario_ISP e Comissionavel_ISP</p>
 
@@ -316,5 +316,81 @@ public class Vendedor_ISP implements Funcionario_ISP,Comissionavel_ISP{
     @Override
     public double salario() {
         return 0;
+    }
+}
+
+```
+<h3>Dependency Inversion Principle (DIP)</h3>
+<p>Dependa de abstrações e não de implementações concretas</p>
+
+<h2>Exemplo Incorreto</h2>
+<p>ServicoNotificacao_DIP depende diretamente de EmailNotificador_DIP.</p>
+<p>Se quisermos adicionar SMS Notification, precisaríamos modificar a classe ServicoNotificacao_DIP, o que viola OCP e DIP</p>
+<p>O código depende de uma implementação concreta, e não de uma abstração.</p>
+
+
+```java
+public class EmailNotificador_DIP {
+
+    public void enviarEmail(String mensagem) {
+        System.out.println("Enviando e-mail: " + mensagem);
+    }
+}
+```
+```java
+public class ServicoNotificacao_DIP {
+
+    private EmailNotificador_DIP emailNotificador;
+
+    public ServicoNotificacao_DIP() {
+        this.emailNotificador = new EmailNotificador_DIP();
+    }
+
+    public void notificar(String mensagem) {
+        emailNotificador.enviarEmail(mensagem);
+    }
+}
+```
+<h2>Exemplo Correto</h2>
+<p>ServicoNotificacao_DIP não depende mais diretamente de EmailNotificador_DIP, mas sim da interface Notificador_DIP.</p>
+<p>Agora podemos adicionar novos tipos de notificadores (SMS, etc.) sem modificar ServicoNotificacao_DIP, seguindo o Princípio do Aberto/Fechado (OCP).</p>
+<p>Injeção de dependência via construtor, facilitando a troca de implementações e a testabilidade do código.</p>
+
+```java
+public interface Notificador_DIP {
+
+    public void enviar(String mensagem);
+
+}
+```
+```java
+public class ServicoNotificacao {
+
+    private Notificador_DIP notificador;
+
+    // Injeção de dependência via construtor
+    public ServicoNotificacao(Notificador_DIP notificador) {
+        this.notificador = notificador;
+    }
+
+    public void notificar(String mensagem) {
+        notificador.enviar(mensagem);
+    }
+}
+```
+```java
+public class EmailNotificador_DIP implements Notificador_DIP{
+
+    @Override
+    public void enviar(String mensagem) {
+        System.out.println("Enviando e-mail: " + mensagem);
+    }
+}
+```
+```java
+public class SmsNotificador_DIP implements Notificador_DIP{
+    @Override
+    public void enviar(String mensagem) {
+        System.out.println("Enviando SMS: " + mensagem);
     }
 }
