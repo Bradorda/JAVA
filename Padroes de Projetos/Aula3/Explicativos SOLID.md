@@ -1,22 +1,22 @@
-# Princípios SOLID
+<h1>Princípios SOLID</h1>
 
-Bom dia, professor! Tudo bem com você? Eu espero que sim.  
-Através deste arquivo, irei explicar como foram implementados os princípios SOLID em cada classe, mostrando a maneira incorreta e a correta para cada princípio.
+<p>Bom dia, professor! Tudo bem com você? Eu espero que sim.</p>
+<p>Através deste arquivo, irei explicar como foram implementados os princípios SOLID em cada classe, mostrando a maneira incorreta e a correta para cada princípio.</p>
 
-## Lista dos Princípios:
-- **S**ingle Responsibility Principle (SRP) - Princípio da Responsabilidade Única  
-- **O**pen/Closed Principle (OCP) - Princípio do Aberto/Fechado  
-- **L**iskov Substitution Principle (LSP) - Princípio da Substituição de Liskov  
-- **I**nterface Segregation Principle (ISP) - Princípio da Segregação de Interface  
-- **D**ependency Inversion Principle (DIP) - Princípio da Inversão de Dependência  
+<ul> Lista dos Princípios:</ul>
+<li><b>S</b>ingle Responsibility Principle (SRP) - Princípio da Responsabilidade Única</li>
+<li><b>O</b>pen/Closed Principle (OCP) - Princípio do Aberto/Fechado</li>
+<li><b>L</b>iskov Substitution Principle (LSP) - Princípio da Substituição de Liskov</li>
+<li><b>I</b>nterface Segregation Principle (ISP) - Princípio da Segregação de Interface</li> 
+<li><b>D</b>ependency Inversion Principle (DIP) - Princípio da Inversão de Dependência</li>
 
 ---
 
-## **1. Single Responsibility Principle (SRP)**  
-O princípio da responsabilidade única afirma que uma classe deve ter apenas um motivo para mudar.  
+<h2>1. Single Responsibility Principle (SRP)</h2> 
+<p>O princípio da responsabilidade única afirma que uma classe deve ter apenas um motivo para mudar.</p> 
 
-### ❌ Exemplo Incorreto:
-A classe abaixo **viola o SRP** porque mistura **lógica geração de relatorios com a exportação para PDF**.
+<h3>Exemplo Incorreto:</h3>
+<p>A classe abaixo <b></b>viola o SRP</b> porque mistura </b>lógica geração de relatorios com a exportação para PDF<b>.</p>
 
 ```java
 public class RelatorioVendas_SRP {
@@ -44,10 +44,11 @@ public class RelatorioVendas_SRP {
 
 }
 ```
-###  Exemplo Correto:
-RelatorioVendas agora só cuida da geração do relatório**
-ExportadorPDF agora só cuida da exportação do relatório.**
-Se no futuro quisermos exportar para Excel ou Banco de Dados, podemos criar novas classes (ExportadorExcel, ExportadorBanco) sem modificar a classe RelatorioVendas!**
+<h3>Exemplo Correto:</h3>
+<p>RelatorioVendas agora só cuida da geração do relatório</p>
+<p>ExportadorPDF agora só cuida da exportação do relatório.</p>
+<p>Se no futuro quisermos exportar para Excel ou Banco de Dados, podemos criar novas classes (ExportadorExcel, ExportadorBanco) sem modificar a classe RelatorioVendas!</p>
+
 ```java
 public class RelatorioVendas_SRP {
 
@@ -81,30 +82,31 @@ public class ExportadorPDF_SRP {
     }
 }
 ```
-## **1. Open/Closed Principle (OCP)**  
-//explicação OCP
-### ❌ Exemplo Incorreto:
-A classe CalculadoraDesconto não está aberta para extensão e fechada para modificação.
-Se quisermos adicionar um novo tipo de cliente (ex: "Cliente Premium"), teremos que modificar a classe, violando o OCP.
+<h2>Open/Closed Principle (OCP)</h2>
+<p>Entidades de software (como classes e metodos) devem estar abertas para extensão, mas fechadas para modificão</p>
+<h3>Exemplo Incorreto:</h3>
+<p>A classe CalculadoraDesconto não está aberta para extensão e fechada para modificação.</p>
+<p>Se quisermos adicionar um novo tipo de cliente (ex: "Cliente Premium"), teremos que modificar a classe, violando o OCP.</p>
 
 ```java
 public class CalculadoraDesconto_OCP {
 
     public double calcularDesconto(String tipoCliente, double valorCompra) {
         if (tipoCliente.equals("Comum")) {
-            return valorCompra * 0.05; // 5% de desconto
+            return valorCompra * 0.05;
         } else if (tipoCliente.equals("VIP")) {
-            return valorCompra * 0.10; // 10% de desconto
+            return valorCompra * 0.10;
         } else if (tipoCliente.equals("Funcionário")) {
-            return valorCompra * 0.20; // 20% de desconto
+            return valorCompra * 0.20;
         }
         return 0;
     }
 }
 ```
-###  Exemplo Correto:
-O código está aberto para extensão (podemos adicionar novos tipos de desconto sem alterar código existente).
-Fechado para modificação (não precisamos mexer na Main nem na FabricaDesconto para adicionar novos tipos).
+<h2>Exemplo Correto:</h2>
+<p>O código está aberto para extensão (podemos adicionar novos tipos de desconto sem alterar código existente).</p>
+<p>Fechado para modificação (não precisamos mexer na Main nem na FabricaDesconto para adicionar novos tipos).</p>
+
 ```java
 public interface CalculadoraDesconto_OCP {
 
