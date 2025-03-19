@@ -82,8 +82,9 @@ public class ExportadorPDF_SRP {
     }
 }
 ```
-<h2>Open/Closed Principle (OCP)</h2>
+<h2>2. Open/Closed Principle (OCP)</h2>
 <p>Entidades de software (como classes e metodos) devem estar abertas para extensão, mas fechadas para modificão</p>
+
 <h3>Exemplo Incorreto:</h3>
 <p>A classe CalculadoraDesconto não está aberta para extensão e fechada para modificação.</p>
 <p>Se quisermos adicionar um novo tipo de cliente (ex: "Cliente Premium"), teremos que modificar a classe, violando o OCP.</p>
@@ -103,7 +104,7 @@ public class CalculadoraDesconto_OCP {
     }
 }
 ```
-<h2>Exemplo Correto:</h2>
+<h3>Exemplo Correto:</h3>
 <p>O código está aberto para extensão (podemos adicionar novos tipos de desconto sem alterar código existente).</p>
 <p>Fechado para modificação, e aberto para adicionar novos tipos).</p>
 
@@ -141,10 +142,10 @@ public class CalculadoraDescontoClienteFuncionario_OCP implements CalculadoraDes
     }
 }
 ```
-<h3>Liskov Substitution Principle (LSP)</h3>
+<h2>3. Liskov Substitution Principle (LSP)</h2>
 <p>Classes-filhas devem ser capazes de substituir suas classes-mães</p>
 
-<h2>Exemplo Incorreto</h2>
+<h3>Exemplo Incorreto</h3>
 <p>Quadrado herda de Retangulo, mas altera o comportamento dos métodos setLargura e setAltura</p>
 <p>Isso quebra a substituição: um Quadrado deveria poder ser usado onde um Retangulo é esperado sem alterar o comportamento esperado</p>
 
@@ -183,7 +184,7 @@ public class Quadrado_LSP extends Retangulo_LSP {
     }
 }
 ```
-<h2>Exemplo Correto</h2>
+<h3>Exemplo Correto</h3>
 <p>Quadrado e Retangulo não estão mais ligados por herança</p>
 <p>Agora ambos implementam Forma, garantindo que cada um tenha seu próprio comportamento correto.</p>
 <p>Quadrado e Retangulo podem ser usados sem que um afete o comportamento do outro</p>
@@ -237,7 +238,7 @@ public class Quadrado_LSP implements Forma_LSP{
     }
 }
 ```
-<h2>Interface Segregation Principle (ISP)</h2>
+<h2>4. Interface Segregation Principle (ISP)</h2>
 <p>Uma classe não deve ser forçada a implementar interfaces e metodos que não serão utilizados</p>
 
 <h3>Exemplo Incorreto</h3>
@@ -320,10 +321,10 @@ public class Vendedor_ISP implements Funcionario_ISP,Comissionavel_ISP{
 }
 
 ```
-<h3>Dependency Inversion Principle (DIP)</h3>
+<h2>5. Dependency Inversion Principle (DIP)</h2>
 <p>Dependa de abstrações e não de implementações concretas</p>
 
-<h2>Exemplo Incorreto</h2>
+<h3>Exemplo Incorreto</h3>
 <p>ServicoNotificacao_DIP depende diretamente de EmailNotificador_DIP.</p>
 <p>Se quisermos adicionar SMS Notification, precisaríamos modificar a classe ServicoNotificacao_DIP, o que viola OCP e DIP</p>
 <p>O código depende de uma implementação concreta, e não de uma abstração.</p>
@@ -351,7 +352,7 @@ public class ServicoNotificacao_DIP {
     }
 }
 ```
-<h2>Exemplo Correto</h2>
+<h3>Exemplo Correto</h3>
 <p>ServicoNotificacao_DIP não depende mais diretamente de EmailNotificador_DIP, mas sim da interface Notificador_DIP.</p>
 <p>Agora podemos adicionar novos tipos de notificadores (SMS, etc.) sem modificar ServicoNotificacao_DIP, seguindo o Princípio do Aberto/Fechado (OCP).</p>
 <p>Injeção de dependência via construtor, facilitando a troca de implementações e a testabilidade do código.</p>
