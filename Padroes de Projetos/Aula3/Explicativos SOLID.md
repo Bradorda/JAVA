@@ -1,17 +1,30 @@
-<h1>Principios SOLID</h1>
-<p>Bom dia professor tudo bem com você eu espero que sim, através deste arquivo eu irei explicar como foi implementado os principios SOLID de cada classe mostrando a maneira incorreta e correta para cada principio.</p>
-<ul>
-  <li>Single Responsibility Principe</li>
-  <li>Open Closed Principe</li>
-  <li>Liskov Substituion Principe</li>
-  <li>Interface Segregation Principe</li>
-  <li>Dependency Inversion Principe</li>  
-</ul>
+# Princípios SOLID
 
-<h2>Single Responsibility Principe</h2>
+Bom dia, professor! Tudo bem com você? Eu espero que sim.  
+Através deste arquivo, irei explicar como foram implementados os princípios SOLID em cada classe, mostrando a maneira incorreta e a correta para cada princípio.
+
+## Lista dos Princípios:
+- **S**ingle Responsibility Principle (SRP) - Princípio da Responsabilidade Única  
+- **O**pen/Closed Principle (OCP) - Princípio do Aberto/Fechado  
+- **L**iskov Substitution Principle (LSP) - Princípio da Substituição de Liskov  
+- **I**nterface Segregation Principle (ISP) - Princípio da Segregação de Interface  
+- **D**ependency Inversion Principle (DIP) - Princípio da Inversão de Dependência  
+
+---
+
+## **1. Single Responsibility Principle (SRP)**  
+O princípio da responsabilidade única afirma que uma classe deve ter apenas um motivo para mudar.  
+
+### ❌ Exemplo Incorreto:
+A classe abaixo **viola o SRP** porque mistura **lógica de cálculo e exibição** no console.
+
 ```java
-public class Exemplo {
-    public static void main(String[] args) {
-        System.out.println("Olá, mundo!"); // Imprime uma mensagem no console
+public class Calculadora {
+    public int somar(int a, int b) {
+        return a + b;
+    }
+
+    public void imprimirResultado(int resultado) {
+        System.out.println("Resultado: " + resultado);
     }
 }
